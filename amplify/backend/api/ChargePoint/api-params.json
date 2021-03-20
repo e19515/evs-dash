@@ -1,0 +1,42 @@
+{
+    "paths": [
+        {
+            "name": "/ChargePoint/{PointId}",
+            "lambdaFunction": "ChargePoint",
+            "privacy": {
+                "private": true,
+                "auth": [
+                    "/POST",
+                    "/GET",
+                    "/PUT",
+                    "/PATCH",
+                    "/DELETE"
+                ]
+            },
+            "policyResourceName": "/ChargePoint/*"
+        }
+    ],
+    "resourceName": "ChargePoint",
+    "apiName": "ChargePoint",
+    "functionArns": [
+        {
+            "lambdaFunction": "ChargePoint"
+        }
+    ],
+    "privacy": {
+        "auth": 1,
+        "unauth": 0,
+        "authRoleName": "amplify-evsdash-dev-225743-authRole",
+        "unAuthRoleName": "amplify-evsdash-dev-225743-unauthRole"
+    },
+    "dependsOn": [
+        {
+            "category": "function",
+            "resourceName": "ChargePoint",
+            "attributes": [
+                "Name",
+                "Arn"
+            ]
+        }
+    ]
+}

@@ -1,0 +1,60 @@
+{
+  "hosting": {
+    "amplifyhosting": {
+      "service": "amplifyhosting",
+      "providerPlugin": "awscloudformation",
+      "type": "manual"
+    }
+  },
+  "auth": {
+    "evsdash71a9593d": {
+      "service": "Cognito",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [],
+      "customAuth": false
+    }
+  },
+  "storage": {
+    "dynamob62a8a76": {
+      "service": "DynamoDB",
+      "providerPlugin": "awscloudformation"
+    }
+  },
+  "function": {
+    "ChargePoint": {
+      "build": true,
+      "providerPlugin": "awscloudformation",
+      "service": "Lambda",
+      "dependsOn": [
+        {
+          "category": "storage",
+          "resourceName": "dynamob62a8a76",
+          "attributes": [
+            "Name",
+            "Arn"
+          ],
+          "attributeEnvMap": {
+            "Name": "TABLE_NAME",
+            "Arn": "TABLE_ARN"
+          }
+        }
+      ]
+    }
+  },
+  "api": {
+    "ChargePoint": {
+      "service": "API Gateway",
+      "providerPlugin": "awscloudformation",
+      "dependsOn": [
+        {
+          "category": "function",
+          "resourceName": "ChargePoint",
+          "attributes": [
+            "Name",
+            "Arn"
+          ]
+        }
+      ]
+    }
+  }
+}

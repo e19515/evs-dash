@@ -1,0 +1,7 @@
+{
+    "tableName": "ChargePoint",
+    "partitionKeyName": "PointId",
+    "partitionKeyType": "N",
+    "sortKeyName": "FriendlyName",
+    "sortKeyType": "S"
+}

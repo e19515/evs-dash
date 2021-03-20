@@ -1,0 +1,32 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-evsdash-dev-225743-authRole",
+      "UnauthRoleArn": "arn:aws:iam::559564456606:role/amplify-evsdash-dev-225743-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::559564456606:role/amplify-evsdash-dev-225743-authRole",
+      "Region": "eu-west-2",
+      "DeploymentBucketName": "amplify-evsdash-dev-225743-deployment",
+      "UnauthRoleName": "amplify-evsdash-dev-225743-unauthRole",
+      "StackName": "amplify-evsdash-dev-225743",
+      "StackId": "arn:aws:cloudformation:eu-west-2:559564456606:stack/amplify-evsdash-dev-225743/b34548f0-89cf-11eb-a057-0af0ce12f7d4",
+      "AmplifyAppId": "dpkveg5bmhc96"
+    },
+    "categories": {
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "dpkveg5bmhc96",
+          "type": "manual"
+        }
+      },
+      "auth": {
+        "evsdash71a9593d": {}
+      },
+      "function": {
+        "ChargePoint": {
+          "deploymentBucketName": "amplify-evsdash-dev-225743-deployment",
+          "s3Key": "amplify-builds/ChargePoint-30314577396e4d2b7450-build.zip"
+        }
+      }
+    }
+  }
+}
