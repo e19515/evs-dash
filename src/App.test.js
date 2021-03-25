@@ -1,8 +1,12 @@
+import Amplify from "aws-amplify";
+import awsExports from "./aws-exports";
+Amplify.configure(awsExports);
+
 import { render, screen } from '@testing-library/react';
 import App from './App';
 
-test('renders learn react link', () => {
+it('renders EVS dashboard', () => {
   render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+  const h1Element = screen.getByText(/EVS dashboard/i);
+  expect(h1Element).toBeInTheDocument();
 });
