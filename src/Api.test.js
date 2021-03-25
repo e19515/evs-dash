@@ -1,7 +1,7 @@
 global.crypto = require('crypto')
 /* There's a bug in amazon-cognito-identity-js, see ./patches/amazon-cognito-identity-js+4.6.0.patch */
 
-import { bakeValidTestItem, bakeInvalidTestItem} from './testdata';
+import { bakeValidTestItem, bakeInvalidTestItem, bakeItemsForPopulation} from './testdata';
 
 import Amplify, {API, Auth} from "aws-amplify";
 import awsExports from "./aws-exports";
@@ -124,3 +124,20 @@ describe('Create InvalidTestItem', () => {
     )
   })
 })
+
+/* populate Dynamodb */
+/*describe.each(
+  bakeItemsForPopulation(10)
+)('populate Dynamodb', testItem => {
+  test("Create", async () => {
+    return API.post(
+        apiName,
+        chargePointPath,
+        { body: testItem,}
+      ).then( result => {
+        expect( result.data[0] ).toEqual( testItem );
+    }, apiReason => {
+      console.error(apiReason);
+    })
+  })
+})*/

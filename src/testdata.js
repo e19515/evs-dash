@@ -53,10 +53,10 @@ const bakeInvalidTestItem = function(){
     }
 }
 
-const bakeTestItems = function(countValid, countInvalid ) {
+const bakeItemsForPopulation = function( countValid ) {
   const validTestItems = Array.from(Array(countValid)).map(bakeValidTestItem);
-  const invalidTestItem = Array.from(Array(countInvalid)).map(bakeInvalidTestItem);
-  return [...basicTestItems, ...validTestItems, ...invalidTestItem];
+  //const invalidTestItem = Array.from(Array(countInvalid)).map(bakeInvalidTestItem);
+  return [...basicTestItems, ...validTestItems];
 }
 
-export { possibleSiteDescription, basicTestItems, bakeValidTestItem, bakeInvalidTestItem, bakeTestItems }
+export { possibleSiteDescription, basicTestItems, bakeValidTestItem, bakeInvalidTestItem, bakeItemsForPopulation }
