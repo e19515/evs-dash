@@ -34,7 +34,7 @@ describe('currentAuthenticatedUser return cognitoUser if SignedIn', () => {
 })
 
 describe('fetch dashboard API', () => {
-  it("should return a list of chargePoints", async () => {
+  it("should return a list of chargePoints", () => {
     return API.get(apiName, dashboardPath).then( result => {
       expect( result.count ).toBeGreaterThanOrEqual(1);
     }, apiReason => {
@@ -49,7 +49,7 @@ describe('fetch dashboard API', () => {
 describe('CRUD checklist ValidTestItem', () => {
   const testItem = bakeValidTestItem();
 
-  test("should create a resource (Create)", async () => {
+  test("should create a resource (Create)", () => {
     return API.post(
         apiName,
         chargePointPath,
@@ -61,7 +61,7 @@ describe('CRUD checklist ValidTestItem', () => {
     })
   })
 
-  it("should return a specific resource (Read)", async () => {
+  it("should return a specific resource (Read)", () => {
     return API.get(
         apiName,
         chargePointPath + "/" + testItem.PointId,
@@ -72,7 +72,7 @@ describe('CRUD checklist ValidTestItem', () => {
     })
   })
 
-  test("should update the resource (Update)", async () => {
+  test("should update the resource (Update)", () => {
     testItem.StateOfCharge = 100; // It charges.
     return API.patch(
         apiName,
@@ -85,7 +85,7 @@ describe('CRUD checklist ValidTestItem', () => {
     })
   })
 
-  test("should delete the resource (Delete)", async () => {
+  test("should delete the resource (Delete)", () => {
     return API.del(
         apiName,
         chargePointPath + "/" + testItem.PointId,
