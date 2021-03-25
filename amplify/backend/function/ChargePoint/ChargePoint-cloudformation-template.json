@@ -16,13 +16,13 @@
     "s3Key": {
       "Type": "String"
     },
-    "storagedynamob62a8a76Name": {
+    "storagedynamo8d360980Name": {
       "Type": "String",
-      "Default": "storagedynamob62a8a76Name"
+      "Default": "storagedynamo8d360980Name"
     },
-    "storagedynamob62a8a76Arn": {
+    "storagedynamo8d360980Arn": {
       "Type": "String",
-      "Default": "storagedynamob62a8a76Arn"
+      "Default": "storagedynamo8d360980Arn"
     }
   },
   "Conditions": {
@@ -97,12 +97,12 @@
         "RoleName": {
           "Fn::If": [
             "ShouldNotCreateEnvResources",
-            "evsdashLambdaRolede5ca8f4",
+            "evsdashLambdaRole6218ec8f",
             {
               "Fn::Join": [
                 "",
                 [
-                  "evsdashLambdaRolede5ca8f4",
+                  "evsdashLambdaRole6218ec8f",
                   "-",
                   {
                     "Ref": "env"
@@ -182,14 +182,14 @@
               ],
               "Resource": [
                 {
-                  "Ref": "storagedynamob62a8a76Arn"
+                  "Ref": "storagedynamo8d360980Arn"
                 },
                 {
                   "Fn::Join": [
                     "/",
                     [
                       {
-                        "Ref": "storagedynamob62a8a76Arn"
+                        "Ref": "storagedynamo8d360980Arn"
                       },
                       "index/*"
                     ]

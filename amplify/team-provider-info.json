@@ -24,7 +24,7 @@
       "function": {
         "ChargePoint": {
           "deploymentBucketName": "amplify-evsdash-dev-225743-deployment",
-          "s3Key": "amplify-builds/ChargePoint-30314577396e4d2b7450-build.zip"
+          "s3Key": "amplify-builds/ChargePoint-5a4678783146794c4f6c-build.zip"
         }
       }
     }
