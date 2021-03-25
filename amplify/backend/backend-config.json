@@ -15,7 +15,7 @@
     }
   },
   "storage": {
-    "dynamob62a8a76": {
+    "dynamo8d360980": {
       "service": "DynamoDB",
       "providerPlugin": "awscloudformation"
     }
@@ -28,7 +28,7 @@
       "dependsOn": [
         {
           "category": "storage",
-          "resourceName": "dynamob62a8a76",
+          "resourceName": "dynamo8d360980",
           "attributes": [
             "Name",
             "Arn"

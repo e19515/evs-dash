@@ -1,0 +1,5 @@
+{
+    "tableName": "ChargePoint",
+    "partitionKeyName": "PointId",
+    "partitionKeyType": "S"
+}

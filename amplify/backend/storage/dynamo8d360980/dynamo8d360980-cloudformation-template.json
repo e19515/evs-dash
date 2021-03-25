@@ -12,13 +12,6 @@
             "Type": "String"
         },
         
-        "sortKeyName": {
-            "Type": "String"
-        },
-        "sortKeyType": {
-            "Type": "String"
-        },
-        
         "tableName": {
             "Type": "String"
         }
@@ -40,13 +33,8 @@
                 "AttributeDefinitions": [
                   
                   {
-                      "AttributeName": "FriendlyName",
-                      "AttributeType": "S"
-                  }  , 
-                  
-                  {
                       "AttributeName": "PointId",
-                      "AttributeType": "N"
+                      "AttributeType": "S"
                   } 
                   
                 ],
@@ -55,11 +43,6 @@
                   {
                     "AttributeName": "PointId",
                     "KeyType": "HASH"
-                  }  , 
-                  
-                  {
-                    "AttributeName": "FriendlyName",
-                    "KeyType": "RANGE"
                   } 
                   
                 ],
@@ -127,17 +110,6 @@
         "PartitionKeyType": {
             "Value": {
                 "Ref": "partitionKeyType"
-            }
-        },
-        
-        "SortKeyName": {
-            "Value": {
-                "Ref": "sortKeyName"
-            }
-        },
-        "SortKeyType": {
-            "Value": {
-                "Ref": "sortKeyType"
             }
         },
         
