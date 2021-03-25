@@ -84,7 +84,7 @@ app.post(chargePointsPath, function(req, res) {
 
   if (! checkPercentage(req.body.StateOfCharge)) {
     res.statusCode = 409;
-    res.json({error: "The percentage is wrong."});
+    res.json({error: "StateOfCharge is invalid."});
     return;
   }
 
