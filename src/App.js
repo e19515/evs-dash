@@ -1,55 +1,50 @@
 //import logo from './logo.svg';
 import './App.css';
-import { AmplifyAuthenticator, AmplifySignUp, AmplifySignIn, AmplifySignOut } from '@aws-amplify/ui-react';
+import { AmplifyAuthenticator, AmplifySignIn, AmplifySignOut } from '@aws-amplify/ui-react';
 import {AuthState} from "@aws-amplify/ui-components";
 import Helmet from "react-helmet";
-import { API, Auth } from 'aws-amplify';
 import { useState, useEffect } from 'react';
 import useInterval from 'use-interval';
 
+import { fetchDashboard, isSignedIn } from './Api';
 import ChargePointTable from './ChargePointTable';
 
 function App() {
   const [data, setData] = useState([{FriendlyName: 'loading...'}])
   
-  const fetchDashboardAPI = async function() {
-    const apiName = 'ChargePoint';
-    const path = '/dashboard';
-
-    Auth.currentAuthenticatedUser().then( cognitoUser =>{
-      API.get(apiName, path).then( result => {
-        console.debug(result.chargePoints);
+  const refreshDashboard = function() {
+    if (isSignedIn()) {
+      fetchDashboard().then( result => {
+        console.debug(result);
         setData(result.data);
       }, apiReason => {
         console.error(apiReason);
       })
-    }, authReason => {
-      console.log(authReason);
-    })
+    }
   }
   
   // fetchDashboardAPI on signedIn
   const handleAuthStateChange = (nextAuthState) => {
     if (nextAuthState === AuthState.SignedIn) {
-      fetchDashboardAPI();
+      refreshDashboard();
     }
   };
   // fetchDashboardAPI using the effect Hook, similar to componentDidMount (already signedIn)
   useEffect( () => { 
-    fetchDashboardAPI();
+    refreshDashboard();
   }, []);
   // fetchDashboardAPI every 30s
   useInterval( () => {
-    fetchDashboardAPI();
+    refreshDashboard();
   }, 30*1000/* ms */);
 
   return (
     <AmplifyAuthenticator handleAuthStateChange={handleAuthStateChange}>
       {/* Present the actual Dashboard, apply Bootstrap layout */}
       <div className="App container-fluid">
-        {/* FIXME: AmplifyAuthenticator conflict */}
         <Helmet>
           <title>ChargePoint - EVS dashboard</title> 
+          {/* FIXME: AmplifyAuthenticator conflict */}
         </Helmet>
         <div className="row my-3">
           <div className="col-md-9 col-sm-8">
@@ -64,12 +59,11 @@ function App() {
           </div>
         </div>
         <div className="row">
-
-
-          <ChargePointTable
-            data={data}
-          />
-
+          <div className="col-md-12">
+            <ChargePointTable
+              data={data}
+            />
+          </div>
         </div>
       </div>
 
