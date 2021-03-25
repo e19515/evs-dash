@@ -5,16 +5,16 @@ function ChargePointTable({ data }) {
   const columns = useMemo(
     () => [
       {
+        Header: 'Site',
+        accessor: 'SiteDescription', // accessor is the "key" in the data
+      },
+      {
         Header: 'Name',
         accessor: 'FriendlyName',
       },
       {
         Header: '% charged',
         accessor: 'StateOfCharge',
-      },
-      {
-        Header: 'Site',
-        accessor: 'SiteDescription', // accessor is the "key" in the data
       },
     ], []
   )
