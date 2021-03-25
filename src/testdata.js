@@ -1,6 +1,12 @@
 import { v4 as uuidv4 } from 'uuid';
 import { uniqueNamesGenerator, adjectives, colors, animals } from 'unique-names-generator';
 
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
 const possibleSiteDescription = [
   "Market Pl Carpark, Thirsk YO7 1PZ",
   "St. Catherine's Lodge, Sindlesham RG41 5BN",
@@ -12,13 +18,13 @@ const basicTestItems = [
   {
     PointId: uuidv4(),
     SiteDescription: possibleSiteDescription[0],
-    FriendlyName: 'cute-green-cat',
+    FriendlyName: 'shy-peach-cow',
     StateOfCharge: 100,
   },
   {
     PointId: uuidv4(),
     SiteDescription: possibleSiteDescription[1],
-    FriendlyName: 'lazy-yellow-ox',
+    FriendlyName: 'yummy-amber-cat',
     StateOfCharge: 50,
   },
   {
@@ -37,7 +43,7 @@ const bakeValidTestItem = function(){
       dictionaries: [adjectives, colors, animals],
       separator: "-"
     }), // cute-blue-cat
-    StateOfCharge: Math.floor(Math.random() * (100) -(0) +1) +(0) , // 0-100
+    StateOfCharge: getRandomInt(0,100)  , // 0-100
   }
 }
 
@@ -49,7 +55,7 @@ const bakeInvalidTestItem = function(){
       dictionaries: [adjectives, colors, animals],
       separator: "-"
     }), // cute-blue-cat
-    StateOfCharge: Math.floor(Math.random() * (500) -(101) +1) +(191) , // 101-500
+    StateOfCharge: getRandomInt(200,500) , // 101-500
     }
 }
 

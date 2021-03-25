@@ -45,22 +45,23 @@ describe('fetch dashboard API', () => {
 
 
 /* ValidTestItem */
-describe('CRUD ValidTestItem', () => {
+/* checklist from an article "What to test on your CRUD REST API" */
+describe('CRUD checklist ValidTestItem', () => {
   const testItem = bakeValidTestItem();
 
-  test("Create", async () => {
+  test("should create a resource (Create)", async () => {
     return API.post(
         apiName,
         chargePointPath,
         { body: testItem,}
-      ).then( result => {
+      ).then( result => { // TODO: Can I access HTTP status code?
         expect( result.data[0] ).toEqual( testItem );
     }, apiReason => {
       console.error(apiReason);
     })
   })
 
-  test("Read", async () => {
+  it("should return a specific resource (Read)", async () => {
     return API.get(
         apiName,
         chargePointPath + "/" + testItem.PointId,
@@ -71,7 +72,7 @@ describe('CRUD ValidTestItem', () => {
     })
   })
 
-  test("Update", async () => {
+  test("should update the resource (Update)", async () => {
     testItem.StateOfCharge = 100; // It charges.
     return API.patch(
         apiName,
@@ -84,7 +85,7 @@ describe('CRUD ValidTestItem', () => {
     })
   })
 
-  test("Delete", async () => {
+  test("should delete the resource (Delete)", async () => {
     return API.del(
         apiName,
         chargePointPath + "/" + testItem.PointId,
@@ -95,7 +96,19 @@ describe('CRUD ValidTestItem', () => {
     })
   })
 
-  test("Read after Deletion",  () => {
+  test("should return a 404 if resource not found (Update after Deletion)",  () => { // SHOULD FAIL
+    return expect(
+      API.patch(
+        apiName,
+        chargePointPath + "/" + testItem.PointId,
+        { body: testItem,}
+      )
+    ).rejects.toThrow(
+     'Request failed with status code 404',
+    )
+  })
+
+  test("should return a 404 if resource not found (Read after Deletion)",  () => {
     return expect(
       API.get(
         apiName,
@@ -105,6 +118,17 @@ describe('CRUD ValidTestItem', () => {
      'Request failed with status code 404',
     )
   })
+
+  test("should do nothing (Delete non-existent resource)",  () => { // SHOULD FAIL
+    return API.del(
+      apiName,
+      chargePointPath + "/" + "I-DO-NOT-EXIST",
+    ).then( result => {
+      expect( result.success ).toEqual('ChargePoint "I-DO-NOT-EXIST" does not exist.');
+    }, apiReason => {
+      console.error(apiReason);
+    })
+  })
 })
 
 
@@ -112,7 +136,7 @@ describe('CRUD ValidTestItem', () => {
 describe('Create InvalidTestItem', () => {
   const testItem = bakeInvalidTestItem();
 
-  it("should fail",  () => {
+  it("should fail if StateOfCharge is invalid (Create)",  () => {
     return expect(
       API.post(
         apiName,
