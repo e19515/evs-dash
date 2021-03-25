@@ -1,4 +1,6 @@
-# Getting Started with Create React App
+# evs-dash
+
+aws staging site: [https://dev.dpkveg5bmhc96.amplifyapp.com/](https://dev.dpkveg5bmhc96.amplifyapp.com/)
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
