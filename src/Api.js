@@ -6,16 +6,20 @@ Auth.configure({ ...awsExports, authenticationFlowType: "USER_PASSWORD_AUTH" });
 const username = 'evsdemo'
 const password = 'evsdemo1'
 const apiName = 'ChargePoint';
-const chargePointPath = '/chargePoints';
+const chargePointsPath = '/chargePoints';
 const dashboardPath = '/dashboard';
+
+function pathFromChargePoint(chargePoint) {
+  return chargePointsPath + '/' + chargePoint.PointId
+}
 
 function signIn() {
   return Auth.signIn(username, password)
 }
 
 async function isSignedIn() {
-  const cognitoUser = await Auth.currentAuthenticatedUser();
-  return (cognitoUser.username == username);
+  const cognitoUser = await Auth.currentAuthenticatedUser()
+  return (cognitoUser.username == username)
 }
 
 function fetchDashboard() {
@@ -25,7 +29,7 @@ function fetchDashboard() {
 function postChargePoint( chargePoint ) {
   return API.post(
     apiName,
-    chargePointPath,
+    chargePointsPath,
     {
       body: chargePoint,
     },
@@ -35,14 +39,14 @@ function postChargePoint( chargePoint ) {
 function getChargePoint( chargePoint ) {
   return API.get(
     apiName,
-    chargePointPath + '/' + chargePoint.PointId,
+    pathFromChargePoint(chargePoint),
   )
 }
 
 function deleteChargePoint( chargePoint ) {
   return API.del(
     apiName,
-    chargePointPath + '/' + chargePoint.PointId,
+    pathFromChargePoint(chargePoint),
     {
       body: chargePoint,
     },
@@ -52,7 +56,7 @@ function deleteChargePoint( chargePoint ) {
 function patchChargePoint( chargePoint ) {
   return API.patch(
     apiName,
-    chargePointPath + '/' + chargePoint.PointId,
+    pathFromChargePoint(chargePoint),
     {
       body: chargePoint,
     },
