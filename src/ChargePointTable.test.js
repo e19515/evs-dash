@@ -7,9 +7,6 @@ import ChargePointTable from './ChargePointTable';
 it("renders correctly", () => {
   const realUseState = useState
   const data = basicTestItems;
-  jest
-  .spyOn(React, 'useState')
-  .mockImplementationOnce(() => realUseState(data))
 
   render(<ChargePointTable data={data} />);
 

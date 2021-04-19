@@ -3,11 +3,11 @@ global.crypto = require('crypto')
 
 import { bakeValidTestItem, bakeInvalidTestItem, bakeItemsForPopulation} from './testdata';
 
-import { signIn, isSignedIn, fetchDashboard, postChargePoint, getChargePoint, deleteChargePoint, patchChargePoint} from './Api';
+import { signInAsDemo, isSignedIn, fetchDashboard, postChargePoint, getChargePoint, deleteChargePoint, patchChargePoint} from './Api';
 
-describe('signIn give us authorization to the API', () => {
+describe('signInAsDemo give us authorization to the API', () => {
   it("sign in as predefined user 'evsdemo'", async () => {
-    const cognitoUser = await signIn();
+    const cognitoUser = await signInAsDemo();
     expect( cognitoUser.username ).toEqual('evsdemo');
   })
 })

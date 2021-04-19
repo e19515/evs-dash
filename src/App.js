@@ -23,17 +23,17 @@ function App() {
     }
   }
   
-  // fetchDashboardAPI on signedIn
+  // refreshDashboard on signedIn
   const handleAuthStateChange = (nextAuthState) => {
     if (nextAuthState === AuthState.SignedIn) {
       refreshDashboard();
     }
   };
-  // fetchDashboardAPI using the effect Hook, similar to componentDidMount (already signedIn)
+  // refreshDashboard using the effect Hook, similar to componentDidMount (already signedIn)
   useEffect( () => { 
     refreshDashboard();
   }, []);
-  // fetchDashboardAPI every 30s
+  // refreshDashboard every 30s
   useInterval( () => {
     refreshDashboard();
   }, 30*1000/* ms */);

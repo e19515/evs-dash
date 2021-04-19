@@ -13,13 +13,17 @@ function pathFromChargePoint(chargePoint) {
   return chargePointsPath + '/' + chargePoint.PointId
 }
 
-function signIn() {
+function signInAsDemo() {
   return Auth.signIn(username, password)
 }
 
 async function isSignedIn() {
-  const cognitoUser = await Auth.currentAuthenticatedUser()
-  return (cognitoUser.username == username)
+  return Auth.currentAuthenticatedUser().then( cognitoUser => {
+    return (cognitoUser.username.length >= 1);
+  }, authReason => {
+    console.log(authReason);
+    return false;
+  })
 }
 
 function fetchDashboard() {
@@ -63,4 +67,4 @@ function patchChargePoint( chargePoint ) {
   )
 }
 
-export { signIn, isSignedIn, fetchDashboard, postChargePoint, getChargePoint, deleteChargePoint, patchChargePoint};
+export { signInAsDemo, isSignedIn, fetchDashboard, postChargePoint, getChargePoint, deleteChargePoint, patchChargePoint};
